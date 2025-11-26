@@ -1,7 +1,8 @@
 //- isaiah little --//
 
 import { useState } from "react"; 
-
+import styles from "./LoginPage.css";
+import logo from "../logo192.png";
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -32,27 +33,33 @@ export default function LoginPage() {
         
     };
     return (
-        <div>
-            <h2>Login</h2>
+        <div className="login-container">
+            <form onSubmit={handleSubmit} className="login-form">
+                <img src={logo}></img>
+                <h2>Welcome to WeatherApp</h2>
+                <p>Sign in to view current weather conditions</p>
+                    
+                {error && <p style={{ color: "red"}}>{error}</p>}
+                
+                <div className="input-group">
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </div>
 
-            {error && <p style={{ color: "red"}}>{error}</p>}
-
-            <form onSubmit={handleSubmit}>
-             <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-             />
-
-             <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            
-             />
-             <button type="submit">Login</button>
+                <div className="input-group">
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    
+                    />
+                </div>
+                <button type="submit">Login</button>
             </form>
         </div>
     );

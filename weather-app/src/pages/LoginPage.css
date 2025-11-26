@@ -9,10 +9,11 @@ body {
 }
 
 .login-container {
+    overflow: hidden;
     background-color: #fff;
     padding: 30px;
     width: 450px;
-    height: 350px;
+    height: 50%;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

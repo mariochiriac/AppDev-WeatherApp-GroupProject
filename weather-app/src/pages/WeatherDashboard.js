@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import WeatherData from './WeatherData';
+import DayNavigation from './DayNavigation';
 import './Dashboard.css';
 
 export default function WeatherDashboard() {
@@ -7,7 +8,7 @@ export default function WeatherDashboard() {
   const [isLoading, setLoading] = useState(true);
   const [weatherData, setWeatherData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-
+  const [currentDayIndex, setCurrentDayIndex] = useState(0);
 
   const handleSearch = () => {
     if (zipcode.trim()) {
@@ -19,6 +20,18 @@ export default function WeatherDashboard() {
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       handleSearch();
+    }
+  };
+
+  const handlePreviousDay = () => {
+    if (currentDayIndex > 0) {
+      setCurrentDayIndex(currentDayIndex - 1);
+    }
+  };
+
+  const handleNextDay = () => {
+    if (currentDayIndex < weatherData.length - 1) {
+      setCurrentDayIndex(currentDayIndex + 1);
     }
   };
 
@@ -78,8 +91,16 @@ export default function WeatherDashboard() {
         {/* Weather Data Display */}
         {!isLoading && errorMessage.length === 0 ? (
           <div className="weather-data-container">
+              <DayNavigation
+                currentDay={currentDayIndex}
+                totalDays={weatherData.length}
+                onPrevious={handlePreviousDay}
+                onNext={handleNextDay}
+              />
+
+
               {/* Display fetched weather data here */}
-              <WeatherData weatherData={weatherData} />
+              <WeatherData weatherData={weatherData[currentDayIndex]} />
           </div>
         ) : (<></>)}
         

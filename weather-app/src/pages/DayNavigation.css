@@ -1,0 +1,53 @@
+/* === Day Navigation Wrapper === */
+.day-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem; /* gap-4 */
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* === Buttons === */
+.day-nav-button {
+  padding: 0.75rem 1.25rem; /* size="lg" */
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.day-nav-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2); /* hover:bg-white/20 */
+}
+
+.day-nav-button:disabled {
+  opacity: 0.3; /* disabled:opacity-30 */
+  cursor: not-allowed; /* disabled:cursor-not-allowed */
+}
+
+/* Icon */
+.day-nav-icon {
+  font-size: 1.5rem; /* matches w-6 h-6 */
+  font-weight: bold;
+}
+
+/* === Labels === */
+.day-nav-label-group {
+  text-align: center;
+  flex: 1;
+}
+
+.day-nav-title {
+  font-size: 1.5rem; /* text-2xl */
+  color: white;
+}
+
+.day-nav-subtitle {
+  margin-top: 0.25rem; /* mt-1 */
+  font-size: 0.875rem; /* text-sm */
+  color: rgba(255, 255, 255, 0.7);
+}

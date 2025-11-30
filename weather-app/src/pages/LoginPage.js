@@ -1,8 +1,9 @@
 //- isaiah little --//
 
 import { useState } from "react"; 
-import styles from "./LoginPage.css";
+import "./LoginPage.css";
 import logo from "../logo192.png";
+
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -29,13 +30,13 @@ export default function LoginPage() {
         
         /*Temporary navigation before the back end is ready. 
         Delete this chunk when backend is complete */ 
-        window.location.href = "/weather";
+        window.location.href = "/dashboard";
         
     };
     return (
         <div className="login-container">
             <form onSubmit={handleSubmit} className="login-form">
-                <img src={logo}></img>
+                <img src={logo} alt="Logo"></img>
                 <h2>Welcome to WeatherApp</h2>
                 <p>Sign in to view current weather conditions</p>
                     

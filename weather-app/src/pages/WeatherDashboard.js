@@ -1,0 +1,89 @@
+import { useState, useEffect } from 'react';
+import WeatherData from './WeatherData';
+import './Dashboard.css';
+
+export default function WeatherDashboard() {
+  const [zipcode, setZipcode] = useState('');
+  const [isLoading, setLoading] = useState(true);
+  const [weatherData, setWeatherData] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
+
+
+  const handleSearch = () => {
+    if (zipcode.trim()) {
+      setZipcode(zipcode.trim());
+      fetchForecast();
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  async function fetchForecast() {
+        setWeatherData([]);
+        setLoading(true);
+        setErrorMessage("");
+
+        const url = `https://wp.zybooks.com/weather.php?zip=${zipcode}`;
+        const response = await fetch(url);
+        if (response.ok) {
+        const result = await response.json();
+        if (result.success) {
+            setWeatherData(result.forecast);
+        }
+        else {
+            setErrorMessage(result.error);
+        }
+        }
+        else {
+        setErrorMessage("Error in the response.");
+        }
+
+        setLoading(false);
+      }
+
+  return (
+    <div className="page-container">
+      <div className="content-wrapper">
+
+        {/* Header */}
+        <div className="header-container">
+          <h1 className="header-title">Weather Dashboard</h1>
+        </div>
+
+        {/* Zipcode Input */}
+        <div className="input-row">
+          <input
+            type="text"
+            placeholder="Enter zipcode"
+            value={zipcode}
+            onChange={(e) => setZipcode(e.target.value)}
+            className="zipcode-input"
+            onKeyDown={handleKeyPress}
+          />
+
+          <button
+            onClick={handleSearch}
+            className="search-button"
+          >
+            Search
+          </button>
+        </div>
+
+        {errorMessage.length > 0 && <p>{errorMessage}</p>}
+
+        {/* Weather Data Display */}
+        {!isLoading && errorMessage.length == 0 ? (
+          <div className="weather-data-container">
+              {/* Display fetched weather data here */}
+              <WeatherData weatherData={weatherData} />
+          </div>
+        ) : (<></>)}
+        
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,95 @@
+body {
+    min-height: 100vh;
+    background-color: rgb(49, 133, 242);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* === Page Layout === */
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  align-items: center;
+}
+
+/* Max-width container */
+.content-wrapper {
+  width: 100%;
+  max-width: 42rem; /* similar to max-w-2xl */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* === Header === */
+.header-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.header-title {
+  color: white;
+  font-size: 3rem; /* matches text-5xl */
+}
+
+.header-sub {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.header-sub-text {
+  font-size: 1.25rem; /* text-xl */
+}
+
+/* === Input row === */
+.input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Zip input */
+.zipcode-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.5rem 0.75rem;
+  backdrop-filter: blur(8px);
+  border-radius: 0.25rem;
+}
+
+.zipcode-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.zipcode-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Search button */
+.search-button {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+

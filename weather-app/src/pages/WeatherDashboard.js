@@ -73,10 +73,10 @@ export default function WeatherDashboard() {
           </button>
         </div>
 
-        {errorMessage.length > 0 && <p>{errorMessage}</p>}
+        {errorMessage.length > 0 && <p className='error-msg'>{errorMessage}</p>}
 
         {/* Weather Data Display */}
-        {!isLoading && errorMessage.length == 0 ? (
+        {!isLoading && errorMessage.length === 0 ? (
           <div className="weather-data-container">
               {/* Display fetched weather data here */}
               <WeatherData weatherData={weatherData} />

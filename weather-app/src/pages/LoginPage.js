@@ -4,12 +4,13 @@ import { useState } from "react";
 import "./LoginPage.css";
 import logo from "../logo192.png";
 
+//--const API_BASE_URL = "http://localhost:5000";--//
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e) => { //-- needs async when backend ready, for Real login --//
         e.preventDefault();
 
         //-- Validation for Email Address--// 
@@ -29,9 +30,37 @@ export default function LoginPage() {
         }
         
         /*Temporary navigation before the back end is ready. 
-        Delete this chunk when backend is complete */ 
-        window.location.href = "/dashboard";
-        
+        Delete this chunk when backend is complete */
+        window.location.href ="/dashboard"; 
+        /* Real Login system below commented for now until backend ready
+        try{
+            const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ email, password}),
+            });
+
+            const data = await response.json();
+
+            if(!response.ok) {
+                setError(data.error || "Invalid email or password");
+                return;
+            }
+
+            if(data.token) {
+                localStorage.setItem("authToken", data.token);
+            } else {
+                localStorage.setItem("authToken", "dummy-token");
+            }
+
+            localStorage.setItem("userEmail", data.user?.email || email);
+            window.location.href = "/dashboard";
+
+        } catch (err) {
+            console.error(err);
+            setError("Network error. Please try again.");
+        }
+        */ 
     };
     return (
         <div className="login-container">
@@ -61,6 +90,9 @@ export default function LoginPage() {
                     />
                 </div>
                 <button type="submit">Login</button>
+                <p className="login-small">
+                    Don't have an account? <a href="/signup">Sign up</a>
+                </p>
             </form>
         </div>
     );

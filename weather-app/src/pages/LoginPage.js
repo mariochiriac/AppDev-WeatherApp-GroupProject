@@ -4,13 +4,13 @@ import { useState } from "react";
 import "./LoginPage.css";
 import logo from "../logo192.png";
 
-//--const API_BASE_URL = "http://localhost:5000";--//
+const API_BASE_URL = "http://localhost:3010";
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    const handleSubmit = (e) => { //-- needs async when backend ready, for Real login --//
+    const handleSubmit = async (e) => { 
         e.preventDefault();
 
         //-- Validation for Email Address--// 
@@ -31,10 +31,8 @@ export default function LoginPage() {
         
         /*Temporary navigation before the back end is ready. 
         Delete this chunk when backend is complete */
-        window.location.href ="/dashboard"; 
-        /* Real Login system below commented for now until backend ready
         try{
-            const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+            const response = await fetch(`${API_BASE_URL}/api/auth`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({ email, password}),
@@ -59,8 +57,7 @@ export default function LoginPage() {
         } catch (err) {
             console.error(err);
             setError("Network error. Please try again.");
-        }
-        */ 
+        } 
     };
     return (
         <div className="login-container">

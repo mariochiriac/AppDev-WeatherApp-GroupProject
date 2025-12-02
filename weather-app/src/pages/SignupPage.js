@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./SignupPage.css";
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "http://localhost:3010";
 
 function SignupPage() {
   const [email, setEmail] = useState("");
@@ -32,10 +32,10 @@ function SignupPage() {
 
     setIsSubmitting(true);
     try {
-      const res = await fetch(`${API_BASE_URL}/api/auth/signup`, {
+      const res = await fetch(`${API_BASE_URL}/api/seed-user`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, firstName: "Test", lastName:"User" }),
       });
 
       const data = await res.json();

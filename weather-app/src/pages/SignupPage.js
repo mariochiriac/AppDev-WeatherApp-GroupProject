@@ -57,7 +57,7 @@ function SignupPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || "Signup failed. Please try again.");
+        setError(res.error || "Signup failed. Please try again.");
         return;
       }
 
@@ -65,12 +65,14 @@ function SignupPage() {
         localStorage.setItem("authToken", data.token);
       }
       localStorage.setItem("userEmail", data.user?.email || email);
-      navigate("/");
     } catch (err) {
       console.error(err);
       setError("Network error. Please try again.");
     } finally {
-      setIsSubmitting(false);
+      setTimeout(() => {
+        setIsSubmitting(false);
+        navigate("/");
+      }, 2000);      
     }
   }
 

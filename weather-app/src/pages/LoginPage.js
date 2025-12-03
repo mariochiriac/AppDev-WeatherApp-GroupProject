@@ -2,7 +2,6 @@
 
 import { useState } from "react"; 
 import "./LoginPage.css";
-import logo from "../logo192.png";
 import { useNavigate } from 'react-router-dom';
 
 const API_BASE_URL = "http://localhost:3010";
@@ -49,7 +48,7 @@ export default function LoginPage() {
     return (
         <div className="login-container">
             <form onSubmit={handleSubmit} className="login-form">
-                <img src={logo} alt="Logo"></img>
+                <img src="/images/logo.svg" alt="Logo"></img>
                 <h2>Welcome to WeatherApp</h2>
                 <p>Sign in to view current weather conditions</p>
                     

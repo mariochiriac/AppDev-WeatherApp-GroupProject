@@ -3,6 +3,7 @@
 import { useState } from "react"; 
 import "./LoginPage.css";
 import logo from "../logo192.png";
+import { useNavigate } from 'react-router-dom';
 
 const API_BASE_URL = "http://localhost:3010";
 export default function LoginPage() {
@@ -10,24 +11,10 @@ export default function LoginPage() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
+    const navigate = useNavigate();
+
     const handleSubmit = async (e) => { 
         e.preventDefault();
-
-        //-- Validation for Email Address--// 
-        if (!email.includes("@")) {
-            setError("Please enter a valid email.");
-            return;
-        }
-        //- Ruels for the password 
-        const passwordRules = 
-          /^(?=.*[A-Z])(?=.*\d)(?=.*[!$&#])[A-Za-z\d!$&#]{8,}$/;
-
-        if (!passwordRules.test(password)) {
-            setError(
-                "Password must be 8+ chars, include a capital letter, a number, and a special character (! $ & #)."
-            );
-            return;
-        }
         
         /*Temporary navigation before the back end is ready. 
         Delete this chunk when backend is complete */
@@ -52,7 +39,7 @@ export default function LoginPage() {
             }
 
             localStorage.setItem("userEmail", data.user?.email || email);
-            window.location.href = "/dashboard";
+            navigate("/dashboard");
 
         } catch (err) {
             console.error(err);

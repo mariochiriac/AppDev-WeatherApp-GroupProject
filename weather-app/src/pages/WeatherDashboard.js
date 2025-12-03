@@ -10,6 +10,11 @@ export default function WeatherDashboard() {
   const [errorMessage, setErrorMessage] = useState("");
   const [currentDayIndex, setCurrentDayIndex] = useState(0);
 
+  function logout() {
+    localStorage.removeItem("authToken");
+    window.location.href = "/";
+  }
+  
   const handleSearch = () => {
     if (zipcode.trim()) {
       setZipcode(zipcode.trim());
@@ -65,6 +70,7 @@ export default function WeatherDashboard() {
         {/* Header */}
         <div className="header-container">
           <h1 className="header-title">Weather Dashboard</h1>
+          <button onClick={logout} className="logout-button">Logout</button>
         </div>
 
         {/* Zipcode Input */}

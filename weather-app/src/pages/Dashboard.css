@@ -21,8 +21,7 @@ body {
 .content-wrapper {
   width: 100%;
   max-width: 42rem; /* similar to max-w-2xl */
-  display: flex;
-  flex-direction: column;
+  display:block;
   gap: 2rem;
 }
 
@@ -30,7 +29,6 @@ body {
 .header-container {
   text-align: center;
   display: flex;
-  flex-direction: column;
   gap: 0.5rem;
 }
 
@@ -49,6 +47,25 @@ body {
 
 .header-sub-text {
   font-size: 1.25rem; /* text-xl */
+}
+
+.logout-button {
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  flex-direction: column;
+  height: 50%;
+  width: 74px;
+  padding: 0.8rem 0.5rem;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.logout-button:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 /* === Input row === */

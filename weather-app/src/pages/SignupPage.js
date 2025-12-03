@@ -14,6 +14,16 @@ function SignupPage() {
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
+    //-- Validation for Email Address--// 
+    if (!email.includes("@")) {
+        setError("Please enter a valid email.");
+        return;
+    }
+    //- Ruels for the password 
+    const passwordRules = 
+      /^(?=.*[A-Z])(?=.*\d)(?=.*[!$&#])[A-Za-z\d!$&#]{8,}$/;
+
+
     e.preventDefault();
     setError("");
 
@@ -28,6 +38,11 @@ function SignupPage() {
     if (password.length < 8) {
       setError("Password must be at least 8 characters.");
       return;
+    }
+        setError(
+            "Password must be 8+ chars, include a capital letter, a number, and a special character (! $ & #)."
+        );
+        return;
     }
 
     setIsSubmitting(true);
@@ -49,8 +64,7 @@ function SignupPage() {
         localStorage.setItem("authToken", data.token);
       }
       localStorage.setItem("userEmail", data.user?.email || email);
-
-      navigate("/dashboard");
+      navigate("/");
     } catch (err) {
       console.error(err);
       setError("Network error. Please try again.");

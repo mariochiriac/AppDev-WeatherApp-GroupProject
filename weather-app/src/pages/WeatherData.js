@@ -3,14 +3,27 @@ import './WeatherData.css'
 
 export default function WeatherData({ weatherData }) {
   
+  const getWeatherIcon = (temp) => {
+    const desc = temp.toLowerCase();
+
+    // rain.svg
+    // mostly sunny.svg
+    // sunny.svg
+    // partly cloudy.svg
+    // cloudy.svg
+
+    return <img
+          src={`/images/${desc}.svg`}
+          alt={desc}
+          className='icon-wrapper'
+        ></img>;
+  }  
 
   return (
     <div className="forecast-card">
 
       {/* Weather Icon */}
-      <div className="icon-wrapper">
-        
-      </div>
+      {getWeatherIcon(weatherData.desc)}
 
       {/* High / Low Temp */}
       <div className="temp-container">

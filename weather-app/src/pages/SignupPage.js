@@ -39,6 +39,7 @@ function SignupPage() {
       setError("Password must be at least 8 characters.");
       return;
     }
+    if (!passwordRules.test(password)) {
         setError(
             "Password must be 8+ chars, include a capital letter, a number, and a special character (! $ & #)."
         );

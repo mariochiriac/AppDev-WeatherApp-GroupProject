@@ -72,6 +72,12 @@ router.post("/auth", async (req, res) => {
       { expiresIn: "1h" }
     );
 
+    console.log(`User ${email} authenticated successfully:
+      Token: ${token}
+      firstName: ${user.firstName}
+      lastName: ${user.lastName}
+      lastLoginAt: ${user.lastLoginAt}
+    `);
     return res.status(201).json({
       token,
       email: user.email,
